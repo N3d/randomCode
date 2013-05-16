@@ -1,4 +1,11 @@
 #!/usr/bin/python
+
+"""
+* python program to encrypt string using the Cesar13 crypting algorithm
+* 
+* usage:
+    python rot13.py STRING
+"""
 import sys
 
 def main(argv=None):
