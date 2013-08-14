@@ -27,6 +27,7 @@ void XORdecrypt(unsigned char *buff, int bytes){
     do{
         *num ^= key;
         key = key<<1 | key>>31;    // roll the key
+        num++;
         --cont;
     }while(cont);
 
