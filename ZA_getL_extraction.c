@@ -10,7 +10,7 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
-
+#include <stdint.h>
 
 #define DEC_KEY 0x66747032 // Encryption/Decryption key 'ftp2'
 
@@ -20,14 +20,15 @@ unsigned char payload[500];
 void XORdecrypt(unsigned char *buff, int bytes){
     
     int i;
-    unsigned int * num;
-    unsigned int key = DEC_KEY;
+    uint32_t * num =(uint32_t *) buff;;
+    uint32_t key = DEC_KEY;
+    uint32_t cont = bytes /4; 
 
-    for(i=0; i<bytes; i++){
-        num = (unsigned int *) &buff[i];
+    do{
         *num ^= key;
-        key = key<<1 | key>>31;    // no idea why this. Probably to remove!
-    }
+        key = key<<1 | key>>31;    // roll the key
+        --cont;
+    }while(cont);
 
 }
 
