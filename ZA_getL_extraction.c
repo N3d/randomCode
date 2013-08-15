@@ -24,12 +24,12 @@ void XORdecrypt(unsigned char *buff, int bytes){
     uint32_t key = DEC_KEY;
     uint32_t cont = bytes /4; 
 
-    do{
+    while(cont){
         *num ^= key;
         key = key<<1 | key>>31;    // roll the key
         num++;
         --cont;
-    }while(cont);
+    }
 
 }
 
@@ -39,7 +39,7 @@ int read_getL(unsigned char * payload,int size){
 
     for(i=0;i<size;i++){
         printf("<0x%x> ", payload[i]);
-        if((i%10)==0 && i!=0) printf("\n");
+        if((i%4)==0 && i!=0) printf("\n");
     }
 
 
