@@ -27,6 +27,10 @@ char * decription(char * str){
 int main(int argc,char * argv[]){
 
     char * res;
+    if(argc <= 1){
+        printf("Usage: ./secret [account] [password]\n");
+        return 0;
+    }
     res = decription(account);
     if(strcmp(res,argv[1])!=0){
         printf(WUSER);
